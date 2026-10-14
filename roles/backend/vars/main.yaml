@@ -1,3 +1,4 @@
 login_password: ExpenseApp@1
 login_host: db.lukalapu.online
 DB_HOST: db.lukalapu.online
+app_lcoation= /app
