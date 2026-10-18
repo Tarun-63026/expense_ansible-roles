@@ -24,8 +24,8 @@
       tasks_from: app-pre-req
   
    - name: download the dependencies
-     tags:
-     - deployment
+     # tags:
+     #- deployment
      ansible.builtin.command: "npm install"
      args:
       chdir: /app
