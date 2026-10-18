@@ -1,4 +1,4 @@
-mysql_root_password: passwords.yaml
-local_host: db.lukalapu.online
+# mysql_root_password: passwords.yaml
+login_host: db.lukalapu.online
 vars_files:
 - pass.yaml
