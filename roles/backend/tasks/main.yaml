@@ -24,7 +24,7 @@
    - name: download the dependencies
      ansible.builtin.command: "npm install"
      args:
-      chdir: "{{ app_location }}"
+      chdir: /app
 
    - name: copy backend service
      ansible.builtin.template:
