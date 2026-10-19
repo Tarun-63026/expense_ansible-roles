@@ -55,14 +55,18 @@
         - cryptography # Required for password handling
       executable: pip3.9 # Set based on your target 'ansible --version'
 
-   - name: import data into mysql
-     community.mysql.mysql_db:
-      login_user: "{{ login_user }}"
-      login_host: "{{ login_host }}"
+   - name: check mysql password is setup or not
+     community.mysql.mysql_info:
+      login_user: root
       login_password: "{{ login_password }}"
-      target: /app/schema/backend.sql
-      state: import
-      name: all
+      login_host: "{{ login_host }}"
+      filter: version
+     ignore_errors: yes
+     register: mysql_connection_output
+
+   - name: setup root password
+     ansible.builtin.command: "mysql_secure_installation --set-root-pass {{ login_password }}"
+     when: mysql_connection_output.failed is true
    
    - name: daemon reload backend
      ansible.builtin.systemd_service:
@@ -73,3 +77,6 @@
       name: backend
       state: restarted
       enabled: yes
+
+
+      
