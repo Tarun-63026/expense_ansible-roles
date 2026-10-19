@@ -55,14 +55,14 @@
         - cryptography # Required for password handling
       executable: pip3.9 # Set based on your target 'ansible --version'
 
-   - name: Import data into mysql
+   - name: import data into mysql
      community.mysql.mysql_db:
-      name: expenses
-      state: import
-      target: /app/schema/backend.sql
+      login_user: "{{ login_user }}"
       login_host: "{{ login_host }}"
-      login_user: expense
       login_password: "{{ login_password }}"
+      target: /app/schema/backend.sql
+      state: import
+      name: all
    
    - name: daemon reload backend
      ansible.builtin.systemd_service:
