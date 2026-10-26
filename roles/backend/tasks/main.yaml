@@ -6,7 +6,7 @@
 
 - name: install nodejs and mysql
   ansible.builtin.dnf:
-   name: "{{ item }}"
+   name: "{{ items }}"
    state: present
    loop:
    - nodejs
