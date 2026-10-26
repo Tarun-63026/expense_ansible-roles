@@ -1,7 +1,6 @@
 - name: config db server
   hosts: db
   become: yes
-  tasks:
-  - roles
+  roles:
+  - db
 
-  
