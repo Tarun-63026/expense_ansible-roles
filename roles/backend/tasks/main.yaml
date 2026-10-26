@@ -52,7 +52,7 @@
    name:
    - PyMySQL     # to connect mysql db from ansible
    - cryptography # Required for password handling
-  executable: pip3.9 # Set based on your target 'ansible --version'
+   executable: pip3.9 # Set based on your target 'ansible --version'
 
 - name: import data into mysql
   community.mysql.mysql_db:
