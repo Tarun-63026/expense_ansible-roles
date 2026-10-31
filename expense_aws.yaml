@@ -1,0 +1,33 @@
+- name: install ec2-instances with aws
+  host: localhost
+  vars:
+   zone: lukalapu.online
+   instances:
+   - db
+   - backend
+   - frontend
+
+  tasks:
+   - name: create ec2 instances
+     amazon.aws.ec2_instance:
+      name: "{{ item }}"
+      image_id: ami-0055977a6e828a4f4
+      instance_type: t3.micro
+      security_group: allow-everything
+      tags: 
+       Name: "{{ item }}"
+     loop:
+      - "{{ instances }}"
+     register: ec2_instance_info
+    
+   - name: create route 53 records
+     amazon.aws.route53:
+      state: present
+      zone: "{{ zone }}"
+      record: "{{ item }}.{{ zone }}"
+      type: A
+      value: "{{ item.private_ip_address }}"
+      overwrite: yes
+      ttl: 1
+     loop: 
+      - "{{ ec2_instacnes_info.results.instances }}"
