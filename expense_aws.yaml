@@ -30,4 +30,4 @@
       overwrite: yes
       ttl: 1
      loop: 
-      - "{{ ec2_instacnes_info.results.instances }}"
+      - "{{ ec2_instance_info.results.instances }}"
