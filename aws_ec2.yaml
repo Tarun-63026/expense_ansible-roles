@@ -1,14 +1,16 @@
-plugin: amazon.aws.aws_ec2
+xplugin: amazon.aws.aws_ec2
 regions: 
-- us-east-1
+  - us-east-1
 
 keyed_groups:
-- key: tags['Name']
-  prefix: ''
-  parent_group: ''
+  - key: tags['Name']
+    prefix: ''
+    parent_group: ''
 
 filters:
-  tag_name: "backend*"
+  tag:Name: "backend*"
+  # Optional: Only fetch running instances to avoid connection errors on terminated/stopped ones
+  instance-state-name: running
 
 compose:
   ansible_host: private_ip_address
