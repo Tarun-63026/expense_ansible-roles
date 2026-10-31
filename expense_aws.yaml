@@ -1,5 +1,5 @@
 - name: install ec2-instances with aws
-  host: localhost
+  hosts: localhost
   vars:
    zone: lukalapu.online
    instances:
